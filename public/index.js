@@ -118,12 +118,14 @@ function openNoteModal(){
       noteInput.value = "";
     	noteModal.classList.toggle('hidden');
     	modalOpen = false;
+      console.log("The value of modalOpen : ", modalOpen)
     });
 	}
 }
 
 function openPictureModal(){
 	if(!modalOpen){
+    console.log("The value of modalOpen : ", modalOpen)
 		modalOpen = true;
 		pictureModal.classList.toggle('hidden');
 		pictureInput.focus();
@@ -132,6 +134,7 @@ function openPictureModal(){
       pictureInput.value = "";
       pictureModal.classList.toggle('hidden');
       modalOpen = false;
+      console.log("The value of modalOpen : ", modalOpen)
     });
 	}
 }
@@ -187,12 +190,35 @@ function addPicture(){
 	pictureModal.classList.toggle('hidden');
 	var pictureValue = pictureInput.value;
 
-  var picPostHTML = Handlebars.templates.addPicPost({
+  var postRequest = new XMLHttpRequest();
+  var requestURL = getPersonIdFromURL()  + '/addPost';
+  postRequest.open('POST', requestURL);
+
+  var requestBody = JSON.stringify({
     url: pictureValue,
     date: today
   });
 
-  content.insertAdjacentHTML('afterbegin', picPostHTML);
+  ///
+  postRequest.addEventListener('load', function (event) {
+   if (event.target.status === 200) {
+     var addPicPostTemplate = Handlebars.templates.addPicPost;
+     var picPostHTML = addPicPostTemplate({
+       url: pictureValue,
+       date: today
+     });
+    content.insertAdjacentHTML('beforeend', picPostHTML);
+   } else {
+     alert("Error storing photo: " + event.target.response);
+   }
+  });
+
+  postRequest.setRequestHeader('Content-Type', 'application/json');
+  postRequest.send(requestBody);
+
+
+  ///
+
   pictureInput.value = "";
 	modalOpen = false;
 }

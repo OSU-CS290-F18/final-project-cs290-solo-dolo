@@ -75,7 +75,25 @@ app.post('/:username/addPost', function (req, res, next) {
       }
     }
   );
-  } else {
+  }
+  else if(req.body && req.body.url && req.body.date){
+    var usernameCollection = mongoDBDatabase.collection('usernames');
+    usernameCollection.updateOne(
+      { personId: username },
+      { $push: { posts: { url: req.body.url, date: req.body.date } } },
+      function (err, result) {
+        if (err) {
+          res.status(500).send("Error saving post to DB");
+        } else if (result.matchedCount > 0) {
+          res.status(200).send("Success");
+        } else {
+          next();
+        }
+      }
+    );
+  }
+
+  else {
     res.status(400).send("Request needs a body with a note text and date");
   }
 });
