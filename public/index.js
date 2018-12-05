@@ -165,7 +165,7 @@ function addNote(){
          noteText: noteValue,
          date: today
        });
-      content.insertAdjacentHTML('afterbegin', notePostHTML);
+      content.insertAdjacentHTML('beforeend', notePostHTML);
      } else {
        alert("Error storing photo: " + event.target.response);
      }
@@ -193,7 +193,7 @@ function addPicture(){
   });
 
   content.insertAdjacentHTML('afterbegin', picPostHTML);
-
+  pictureInput.value = "";
 	modalOpen = false;
 }
 
