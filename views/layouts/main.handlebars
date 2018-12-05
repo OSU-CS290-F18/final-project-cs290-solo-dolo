@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PaprPlane</title>
+	<link rel="icon" href="images/icon.png">
+	<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.runtime.js" defer></script>
+	<script src="/addNotePostTemplate.js" charset="utf-8" defer></script>
+	<script src="/addPicPostTemplate.js" charset="utf-8" defer></script>
+	<script src="/index.js" charset="utf-8" defer></script>
+</head>
+
+<body class = "landing">
+
+	<div id="afterLogin">
+		<div class="bio">
+			<div id="header">
+				<img id="profilePicture" src="../images/{{picture}}" alt="profilePicture"/>
+					<div id="profilePicModal" class="hidden">
+						<button id="profilePicCancelButton">X</button>
+						<br><br>
+						<input type="text" name="url" id="profilePicUrlInput"placeholder="Profile Picture URL" autofocus>
+						<br><br>
+						<button id="profilePicSubmitButton">SUBMIT</button>
+					</div>
+				<label id="userNameBio">{{username}}</label>
+			</div>
+			<div id="aboutme">
+				<h3>About Me</h3>
+				<p>
+          {{biography}}
+				</p>
+			</div>
+			<div id="peopleYouMayKnow">
+				<h3>People You May Know</h3>
+				<div id = "peopleMayKnowImageDiv">
+					<a href="/dannondarko"><img class="peopleMayKnowImages" src="images/profile_pic.jpg" alt="profilePicture"/></a>
+					<a href="/dakotasmith0509"><img class="peopleMayKnowImages" src="images/dog.jpg" alt="profilePicture"/></a>
+					<a href="/donaldtrump"><img class="peopleMayKnowImages" src="images/donnie.jpg" alt="profilePicture"/></a>
+					<a href="/justinford903"><img class="peopleMayKnowImages" src="images/justin.jpg" alt="profilePicture"/></a>
+				</div>
+			</div>
+			<div id="icons">
+				<img id="noteButton" src="icons/note.png" alt="note"/>
+					<div id="noteModal" class="hidden">
+						<div id="noteModalContent">
+							<button id="closeNoteModal">X</button>
+							<br><br>
+							<textarea id="noteModalInput" onkeyup="charcountupdate(this.value)"></textarea>
+							<button id="noteSubmitButton">SUBMIT</button>
+							<br><br>
+							<div><span id="charcount">0 out of 200 characters</span></div>
+						</div>
+					</div>
+				<img id="audioButton" src="icons/audio.png" alt="audio"/>
+				<img id="pictureButton" src="icons/picture.png" alt="picture"/>
+					<div id="pictureModal" class="hidden">
+						<div id="pictureModalContent">
+							<button id="closePictureModal">X</button>
+							<br><br>
+							<input id="pictureModalInput" placeholder="Add Picture URL"></input>
+							<br><br>
+							<button id="pictureSubmitButton">SUBMIT</button>
+						</div>
+					</div>
+				<img id="videoButton" src="icons/video.png" alt="video"/>
+			</div>
+			<div><img id="biologo" src="images/logo.png"/></div>
+		</div>
+
+		<div class="content">
+			{{{body}}}
+		</div>
+	</div>
+<script type="text/javascript" src="index.js"></script>
+</body>
+</html>

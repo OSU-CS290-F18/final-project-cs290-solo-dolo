@@ -1,0 +1,15 @@
+[
+  {
+         "personId" : "dannondarko",
+         "username" : "dannondarko",
+         "picture" : "profile_pic.jpg",
+         "biography" : "In west Philadelphia born and raised. Stuff",
+         "posts" : [
+                 {
+                         "noteText" : "MongoDB is working!",
+                         "date" : "12/4/2016"
+                 }
+         ]
+
+  }
+]
